@@ -7,13 +7,16 @@ class WriteAndPrint:
         # set font size
         pyxel.FONT_WIDTH = 7
         pyxel.FONT_HEIGHT = 7
-        pyxel.init(200, 200)
+        window_width = 200
+        window_height = 200
+        pyxel.init(window_width, window_height, fps=60)
 
         self.terminal = Terminal()
         self.nav = self.terminal.pwd() + '$ '
         self.cmd = ''
         self.line = self.nav+self.cmd
         self.cached_line = []
+        self.max_line_num = window_height//pyxel.FONT_HEIGHT-1
 
         pyxel.run(self.update, self.draw)
 
@@ -44,12 +47,14 @@ class WriteAndPrint:
         else:
             self.cmd += self.check_input()
         self.line = self.nav+self.cmd
+        if len(self.cached_line) > self.max_line_num:
+            exceed_num = len(self.cached_line) - self.max_line_num
+            self.cached_line = self.cached_line[exceed_num:]
 
     def check_input(self):
         # check if the key is pressed
         for key in range(0, 255):
             if pyxel.btnp(key):
-                print(key)
                 if key == 13:
                     return 'enter'
                 elif key == 8:
