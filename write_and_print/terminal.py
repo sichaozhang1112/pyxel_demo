@@ -58,7 +58,6 @@ class Terminal:
         if len(dir) == 0 or dir in self.file_trees[self.curr_root].dirs:
             return
         self.file_trees[self.curr_root].dirs.append(dir)
-        print(self.file_trees[self.curr_root].dirs)
         self.file_trees[self.curr_root + dir + '/'] = FileTree([], [], self.curr_root)
 
     def rm(self, dir):
