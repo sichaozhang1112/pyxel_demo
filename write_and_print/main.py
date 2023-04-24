@@ -2,6 +2,9 @@
 import pyxel
 from terminal import Terminal
 
+KEY_ENTER = 13
+KEY_BACKSPACE = 8
+
 class WriteAndPrint:
     def __init__(self):
         # set font size
@@ -55,9 +58,9 @@ class WriteAndPrint:
         # check if the key is pressed
         for key in range(0, 255):
             if pyxel.btnp(key):
-                if key == 13:
+                if key == KEY_ENTER:
                     return 'enter'
-                elif key == 8:
+                elif key == KEY_BACKSPACE:
                     return 'back'
                 return chr(key)
         return ''
