@@ -46,3 +46,58 @@ class Star:
             pyxel.circ(self.x, self.y, int(self.destroy_cnt), self.c)
         else:
             pyxel.circ(self.x, self.y, self.r, self.c)
+        if (self.is_selected):
+            pyxel.rectb(self.x-self.r*3, self.y-self.r*3, self.r*7, self.r*7, pyxel.COLOR_RED)
+
+class PointCosmos:
+    def __init__(self):
+        pyxel.init(160, 120, title="Point Cosmos")
+
+        # mouse
+        pyxel.mouse(False)
+        self.mouse_radius_1 = 4
+        self.mouse_radius_2 = 4
+        self.mouse_angle_1 = 0
+        self.mouse_angle_2 = 0
+        self.mouse_color_1 = pyxel.COLOR_LIME
+        self.mouse_color_2 = pyxel.COLOR_GREEN
+
+        # stars
+        self.stars = []
+        for i in range(random.randint(50, 100)):
+            self.stars.append(Star())
+
+        # run
+        pyxel.run(self.update, self.draw)
+
+    def get_mouse_line(self, radius, angle):
+        return LineSegment(Point(radius*math.cos(angle+math.pi), radius*math.sin(angle+math.pi)), Point(radius*math.cos(angle), radius*math.sin(angle)))
+
+    def update(self):
+        # update mouse pointer line
+        self.mouse_angle_1  = (self.mouse_angle_1 + 0.09) % (2*math.pi)
+        self.mouse_angle_2  = (self.mouse_angle_2 + 0.13) % (2*math.pi)
+        
+        # update stars
+        for star in self.stars:
+            if (star.update()):
+                self.stars.remove(star)
+                if random.random() > 0.7:
+                    self.stars.append(Star())
+        if random.random() > 0.7:
+            self.stars.append(Star())
+           
+    def draw(self):
+        pyxel.cls(0)
+
+        # draw stars
+        for star in self.stars:
+            star.draw()
+
+        # draw mouse
+        mouse_line_1 = self.get_mouse_line(self.mouse_radius_1, self.mouse_angle_1)
+        mouse_line_2 = self.get_mouse_line(self.mouse_radius_2, self.mouse_angle_2)
+        pyxel.line(mouse_line_1.start.x+pyxel.mouse_x, mouse_line_1.start.y+pyxel.mouse_y, mouse_line_1.end.x+pyxel.mouse_x, mouse_line_1.end.y+pyxel.mouse_y, int(self.mouse_color_1))
+        pyxel.line(mouse_line_2.start.x+pyxel.mouse_x, mouse_line_2.start.y+pyxel.mouse_y, mouse_line_2.end.x+pyxel.mouse_x, mouse_line_2.end.y+pyxel.mouse_y, int(self.mouse_color_2))
+
+PointCosmos()
