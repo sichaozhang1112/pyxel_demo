@@ -13,7 +13,7 @@ require [pyxel](https://github.com/kitao/pyxel)
 * point_the_cosmos: you can point the cosmos
 
 <div align="center">
-  <img src=./assets/cosmos.gif alt="Cosmos" style="width:300px;height:auto;">
+  <img src=./assets/cosmos.GIF alt="Cosmos" style="width:300px;height:auto;">
 </div>
 
 # TO DO LIST
