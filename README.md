@@ -10,6 +10,11 @@ require [pyxel](https://github.com/kitao/pyxel)
   <img src=./assets/terminal.gif alt="Terminal" style="width:300px;height:auto;">
 </div>
 
-# TO DO LIST
 * point_the_cosmos: you can point the cosmos
+
+<div align="center">
+  <img src=./assets/cosmos.gif alt="Cosmos" style="width:300px;height:auto;">
+</div>
+
+# TO DO LIST
 * frog_animation: animation of a frog, who can breath, jump and fart
