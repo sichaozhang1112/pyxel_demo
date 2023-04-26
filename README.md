@@ -11,7 +11,7 @@ you can write command on terminal-like terminal, and it will give output
   <img src=./assets/terminal.gif alt="Terminal" style="width:300px;height:auto;">
 </div>
 
-Cosmos
+## Cosmos
 you can point the cosmos
 
 <div align="center">
