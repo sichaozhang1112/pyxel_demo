@@ -4,13 +4,15 @@
 require [pyxel](https://github.com/kitao/pyxel)
 
 # INCLUDING 
-* write_and_print: you can write command on terminal-like terminal, and it will give output
+## Terminal
+you can write command on terminal-like terminal, and it will give output
 
 <div align="center">
   <img src=./assets/terminal.gif alt="Terminal" style="width:300px;height:auto;">
 </div>
 
-* point_the_cosmos: you can point the cosmos
+Cosmos
+you can point the cosmos
 
 <div align="center">
   <img src=./assets/cosmos.GIF alt="Cosmos" style="width:300px;height:auto;">
