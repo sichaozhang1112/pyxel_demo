@@ -25,7 +25,8 @@ Point the Cosmos
 ## 3D Printer
 Draw and Print, <br>
 hold mouse left button to draw <br>
-A,D: switch color <br>
+A,D: switch paintor color <br>
+W,S: switch background color <br>
 R: reverse the last painting <br>
 C: clear canvas <br>
 H: hide painter <br>
