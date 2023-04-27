@@ -10,6 +10,7 @@ class ThreeDPrinting:
         self.win_width = 480
         self.win_height = 320
         pyxel.init(self.win_width, self.win_height, title="3D Printing")
+        self.screen_color = 0
 
         # mouse and laser
         pyxel.mouse(False)
@@ -43,12 +44,17 @@ class ThreeDPrinting:
         # monitor button status
         if pyxel.btnp(pyxel.KEY_A):
             self.painter_color = (self.painter_color + 1) % 16
-            if self.painter_color <= 1:
-                self.painter_color = 1
         elif pyxel.btnp(pyxel.KEY_D):
             self.painter_color = (self.painter_color - 1) % 16
-            if self.painter_color <= 1:
+            if self.painter_color < 0:
                 self.painter_color = 15
+
+        if pyxel.btn(pyxel.KEY_S):
+            self.screen_color = (self.screen_color + 1) % 16
+        elif pyxel.btn(pyxel.KEY_W):
+            self.screen_color = (self.screen_color - 1) % 16
+            if self.screen_color < 0:
+                self.screen_color = 15
 
         if pyxel.btn(pyxel.MOUSE_BUTTON_LEFT):
             if len(self.painters) == 0:
@@ -63,7 +69,7 @@ class ThreeDPrinting:
 
         if pyxel.btnp(pyxel.KEY_H):
             self.hide_mouse = not self.hide_mouse
-            
+
         if pyxel.btnp(pyxel.KEY_R):
             if len(self.painters) > 0:
                 self.painters.pop(-1)
@@ -80,7 +86,7 @@ class ThreeDPrinting:
             painter.update(Point(pyxel.mouse_x, pyxel.mouse_y), self.laser_points)
 
     def draw(self):
-        pyxel.cls(pyxel.COLOR_BLACK)
+        pyxel.cls(self.screen_color)
 
         for painter in self.painters:
             painter.draw()
