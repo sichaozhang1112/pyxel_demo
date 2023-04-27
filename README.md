@@ -5,17 +5,24 @@ require [pyxel](https://github.com/kitao/pyxel)
 
 # INCLUDING 
 ## Terminal
-you can write command on terminal-like terminal
+Write Command on Terminal-like Terminal
 
 <div align="center">
   <img src=./assets/terminal.gif alt="Terminal" style="width:300px;height:auto;">
 </div>
 
 ## Cosmos
-you can point the cosmos
+Point the Cosmos
 
 <div align="center">
   <img src=./assets/cosmos.GIF alt="Cosmos" style="width:300px;height:auto;">
+</div>
+
+## 3D Printer
+Draw and Print
+
+<div align="center">
+  <img src=./assets/3dprinting.png alt="Printer" style="width:300px;height:auto;">
 </div>
 
 # TO DO LIST
