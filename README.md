@@ -22,7 +22,7 @@ Point the Cosmos
 Draw and Print
 
 <div align="center">
-  <img src=./assets/3dprinting.png alt="Printer" style="width:300px;height:auto;">
+  <img src=./assets/printer.png alt="Printer" style="width:300px;height:auto;">
 </div>
 
 # TO DO LIST
