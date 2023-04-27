@@ -5,10 +5,6 @@ from laser import Laser
 from utils import Point
 from painter import Painter
 
-BUTTON_NONE = 0
-BUTTON_CLICK = 1
-BUTTON_HOLD = 2
-
 class ThreeDPrinting:
     def __init__(self):
         self.win_width = 480
@@ -34,47 +30,60 @@ class ThreeDPrinting:
             self.mouse.append(Mouse(laser_point))
             self.laser.append(Laser(laser_point))
 
+        self.hide_mouse = False
+
         # painter
         self.painters = []
-        self.button_status = BUTTON_NONE
         self.ready_to_paint = True
+        self.painter_color = 1
 
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        for i in range(self.mouse_num):
-            self.mouse[i].update()
-            self.laser[i].update()
+        # monitor button status
+        if pyxel.btnp(pyxel.KEY_A):
+            self.painter_color = (self.painter_color + 1) % 16
+            if self.painter_color <= 1:
+                self.painter_color = 1
+        elif pyxel.btnp(pyxel.KEY_D):
+            self.painter_color = (self.painter_color - 1) % 16
+            if self.painter_color <= 1:
+                self.painter_color = 15
 
-        # check button status
-        if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
-            self.button_status = BUTTON_CLICK
-        elif pyxel.btn(pyxel.MOUSE_BUTTON_LEFT):
-            self.button_status = BUTTON_HOLD
-        else:
-            self.button_status = BUTTON_NONE
-
-        if self.button_status == BUTTON_HOLD:
+        if pyxel.btn(pyxel.MOUSE_BUTTON_LEFT):
             if len(self.painters) == 0:
-                self.painters.append(Painter())
+                self.painters.append(Painter(self.painter_color))
             else:
                 if self.painters[-1].get_finish_status():
-                    self.painters.append(Painter())
+                    self.painters.append(Painter(self.painter_color))
         else:
             if len(self.painters) > 0:
                 if not self.painters[-1].get_finish_status():
                     self.painters.pop(-1)
+
+        if pyxel.btnp(pyxel.KEY_H):
+            self.hide_mouse = not self.hide_mouse
+
+        if pyxel.btnp(pyxel.KEY_C):
+            self.painters = []
+
+        # update
+        for i in range(self.mouse_num):
+            self.mouse[i].update(self.painter_color)
+            self.laser[i].update()
 
         for painter in self.painters:
             painter.update(Point(pyxel.mouse_x, pyxel.mouse_y), self.laser_points)
 
     def draw(self):
         pyxel.cls(pyxel.COLOR_BLACK)
-        for i in range(self.mouse_num):
-            self.mouse[i].draw()
-            self.laser[i].draw()
 
         for painter in self.painters:
             painter.draw()
+
+        if not self.hide_mouse:
+            for i in range(self.mouse_num):
+                self.mouse[i].draw()
+                self.laser[i].draw()
 
 ThreeDPrinting()
