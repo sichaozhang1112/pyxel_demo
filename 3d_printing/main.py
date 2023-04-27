@@ -63,6 +63,10 @@ class ThreeDPrinting:
 
         if pyxel.btnp(pyxel.KEY_H):
             self.hide_mouse = not self.hide_mouse
+            
+        if pyxel.btnp(pyxel.KEY_R):
+            if len(self.painters) > 0:
+                self.painters.pop(-1)
 
         if pyxel.btnp(pyxel.KEY_C):
             self.painters = []
