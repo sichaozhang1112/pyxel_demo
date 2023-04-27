@@ -9,7 +9,7 @@ class Mouse:
 
         # cross
         self.cross_angle = 0
-        self.cross_radius = 3
+        self.cross_radius = 4
         self.cross_color = pyxel.COLOR_RED
 
         # thunder
@@ -18,9 +18,10 @@ class Mouse:
         self.thunder_color = pyxel.COLOR_WHITE
         self.thunder_update_cnt = 3
 
-    def update(self):
+    def update(self, color):
         # update cross
         self.cross_angle = (self.cross_angle + 0.1) % (2*math.pi)
+        self.thunder_color = color
 
         # update thunder
         self.thunder_update_cnt -= 1
@@ -35,7 +36,6 @@ class Mouse:
             point_on_line = mouse_line.get_point(random.random()/3+i/3)
             self.thunder_seg.append(Point(point_on_line.x+random.randint(-noise, noise), point_on_line.y+random.randint(-noise, noise)))
         self.thunder_seg.append(self.center_point)
-
 
     def draw(self):
         # draw thunder
