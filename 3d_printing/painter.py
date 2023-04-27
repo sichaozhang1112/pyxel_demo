@@ -4,12 +4,12 @@ from printer import *
 from utils import *
 
 class Painter:
-    def __init__(self):
+    def __init__(self, color):
         self.painting = []
         self.painting_finished = False
         self.min_painting_num = 5
         self.printers = []
-        self.painting_color = random.randint(1, 15)
+        self.painting_color = color
         self.printing_cnt = 0
         self.printing_finished = False
 
