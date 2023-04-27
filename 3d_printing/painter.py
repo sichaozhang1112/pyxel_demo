@@ -19,7 +19,7 @@ class Painter:
         return self.painting_finished
 
     def update_painting(self, point):
-        min_interval = 2
+        min_interval = 1
         if len(self.painting) >= 1:
             if self.painting[-1].x == point.x and self.painting[-1].y == point.y:
                 return
