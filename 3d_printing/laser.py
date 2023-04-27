@@ -9,7 +9,7 @@ class Laser:
 
         self.laser_num = 4
         self.laser_color = []
-        color_choice = [pyxel.COLOR_LIME, pyxel.COLOR_GREEN, pyxel.COLOR_WHITE]
+        color_choice = [pyxel.COLOR_LIME, pyxel.COLOR_GREEN]
         for i in range(self.laser_num):
             self.laser_color.append(random.choice(color_choice))
 
