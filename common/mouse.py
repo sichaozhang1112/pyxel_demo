@@ -26,6 +26,9 @@ class Mouse:
                 cross_line_2.get_end().x+pyxel.mouse_x,\
                 cross_line_2.get_end().y+pyxel.mouse_y, self.cross_color)
 
+    def get_position(self):
+        return utils.Point2D(pyxel.mouse_x, pyxel.mouse_y)
+
     def get_cross_line(self, radius, angle):
         return utils.LineSegment(utils.Point2D(radius*math.cos(angle+math.pi), radius*math.sin(angle+math.pi)),\
                 utils.Point2D(radius*math.cos(angle), radius*math.sin(angle)))

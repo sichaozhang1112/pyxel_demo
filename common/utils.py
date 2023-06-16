@@ -19,5 +19,8 @@ class LineSegment:
     def get_point(self, t):
         return Point2D(self.start.x + t*(self.end.x-self.start.x), self.start.y + t*(self.end.y-self.start.y))
 
+    def get_length(self):
+        return get_distance(self.start, self.end)
+
 def get_distance(point1, point2):
     return math.sqrt((point1.x-point2.x)**2 + (point1.y-point2.y)**2)
