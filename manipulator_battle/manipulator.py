@@ -70,14 +70,14 @@ class Manipulator:
             link_point = self.pendulums[i].get_end_point()
         self.angular_velocity = 0.1
 
-    def update(self, target_point, move_direction):
+    def update(self, target_point, move_direction, gain):
         self.chassis.update(move_direction)
         self.angles = self.get_angles()
         self.dist_to_target = utils.get_distance(self.get_end_point(), target_point)
 
         all_angles = []
         for i in range(len(self.pendulums)):
-            to_pick_angle = [-self.angular_velocity, 0.0, self.angular_velocity]
+            to_pick_angle = [-self.angular_velocity*gain, 0.0, self.angular_velocity*gain]
             to_pick_angle = [angle + self.pendulums[i].get_angle() for angle in to_pick_angle]
             all_angles.append(to_pick_angle)
 
@@ -91,17 +91,24 @@ class Manipulator:
         end_point = self.get_end_point()
         pyxel.circ(end_point.x, end_point.y, 2, pyxel.COLOR_RED)
 
+    def remove_pendulum(self, index):
+        for i in range(index, len(self.pendulums)):
+            self.pendulums.pop()
+
     def get_angles(self):
         return [pendulum.get_angle() for pendulum in self.pendulums]
 
     def get_end_point(self):
         return self.pendulums[-1].get_end_point()
 
-    def get_all_points(self):
+    def get_all_link_points(self):
         points = []
         for i in range(len(self.pendulums)):
             points.append(self.pendulums[i].get_start_point())
         return points
+
+    def pendulum_num(self):
+        return len(self.pendulums)
 
     def update_pendulum(self, angles):
         link_point = self.chassis.get_link_point()
